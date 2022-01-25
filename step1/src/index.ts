@@ -1,5 +1,3 @@
-console.log('Starting the app')
-
 import express from 'express'
 import helloRouter from './router'
 
