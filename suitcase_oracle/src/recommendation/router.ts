@@ -1,12 +1,14 @@
-import {Router} from 'express'
-import {findClothes} from './domain'
+import { Router } from 'express'
+import { CompositionRoot } from './composition_root'
 
-let router = Router()
+export const createRouter = (root: CompositionRoot) => {
+  let router = Router()
 
-router.get('/recommendation', (req, res) => {
+  router.get('/recommendation', async (req, res) => {
     const from = new Date(req.query.from as string)
     const to = new Date(req.query.to as string)
-    res.send(findClothes(from, to))
+    const recommendation = await root.recommendClothes(from, to)
+    res.send(recommendation)
   })
-
-export default router
+  return router
+}

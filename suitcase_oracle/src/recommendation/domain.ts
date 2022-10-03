@@ -1,4 +1,7 @@
-export const findClothes = (from: Date, to: Date) => {
-    const days = (to.getTime() - from.getTime()) / (1000 * 3600 * 24)
-    return [`${days} tshirt`, `${days} pair of socks`, `${days} panties`]
+export const findClothes = (temperatures: number[]) => {
+    const days = temperatures.length
+    const clothes = [`${days} x tshirt`, `${days} x pair of socks`, `${days} x panties`]
+    if(temperatures.some(celsius => celsius < 11))
+        clothes.push('1 x jacket')
+    return clothes
 }
